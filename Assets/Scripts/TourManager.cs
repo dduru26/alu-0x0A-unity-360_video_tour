@@ -8,7 +8,9 @@ namespace Tour360
     /// <summary>
     /// Runs the 360 video tour. Only one room is active at a time. When the user
     /// travels, the view fades to black, the old room is turned off, the new room
-    /// is turned on and its video starts, then the view fades back in.
+    /// is turned on and its video starts, then the view fades back in. The black
+    /// overlay is shared with the SceneNavigator, which owns the fade in when the
+    /// scene first loads.
     /// </summary>
     public class TourManager : MonoBehaviour
     {
@@ -45,8 +47,6 @@ namespace Tour360
                 ShowRoom(rooms[i], i == 0);
             if (rooms.Count > 0)
                 current = rooms[0];
-            if (fader != null)
-                fader.alpha = 0f;
         }
 
         /// <summary>Fades to black, moves to the room with the given name, then fades back.</summary>
